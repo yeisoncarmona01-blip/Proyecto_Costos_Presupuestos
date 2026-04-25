@@ -1,1 +1,198 @@
-/* You can add global styles to this file, and also import other style files */
+/* ==========================================================================
+   SoftCost — Global Styles
+   Converted from Figma CSS export, adapted to SCSS
+   ========================================================================== */
+
+// Bootstrap (solo utilidades y grid, sin sobreescribir el diseño Figma)
+@import 'bootstrap/scss/bootstrap';
+
+// ── CSS Custom Properties ──────────────────────────────────────────────────
+:root {
+  --bg: #f0f2f7;
+  --surface: #ffffff;
+  --text: #1a2433;
+  --muted: #556274;
+  --line: #d7deea;
+  --brand-a: #1268f2;
+  --brand-b: #1d8cf8;
+  --brand-c: #2ea8f7;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --shadow-soft: 0 8px 30px rgba(15, 35, 76, 0.08);
+  --shadow-card: 0 10px 24px rgba(15, 35, 76, 0.07);
+}
+
+// ── Reset & Base ───────────────────────────────────────────────────────────
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 10% -10%, #eaf4ff 0, transparent 35%),
+    radial-gradient(circle at 90% -10%, #e7fff6 0, transparent 35%),
+    var(--bg);
+  min-height: 100vh;
+}
+
+// ── Ambient Grid Background ────────────────────────────────────────────────
+.ambient {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(18, 104, 242, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18, 104, 242, 0.03) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: radial-gradient(circle at 50% 30%, black 40%, transparent 80%);
+}
+
+// ── Layout Container ───────────────────────────────────────────────────────
+.layout {
+  width: min(1320px, 95%);
+  margin-inline: auto;
+  padding-block: 1.4rem 2.4rem;
+  display: grid;
+  gap: 1.45rem;
+}
+
+// ── Buttons ────────────────────────────────────────────────────────────────
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0e55c2;
+    outline-offset: 2px;
+  }
+}
+
+.btn--ghost {
+  color: #f4f8ff;
+  border-color: rgba(255, 255, 255, 0.55);
+  padding: 0.55rem 1rem;
+  backdrop-filter: blur(3px);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.16);
+    color: #f4f8ff;
+  }
+}
+
+.btn--solid {
+  color: #0e49a1;
+  background: #ffffff;
+  padding: 0.55rem 1.05rem;
+
+  &:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    color: #0e49a1;
+  }
+}
+
+.btn--outline {
+  margin-top: 0.15rem;
+  padding: 0.58rem 1rem;
+  border-color: var(--accent);
+  color: var(--accent);
+  border-radius: 11px;
+
+  &:hover {
+    background: var(--accent);
+    color: #ffffff;
+  }
+}
+
+.btn--add {
+  padding: 0.45rem 0.88rem;
+  border-radius: 9px;
+  color: #ffffff;
+  font-weight: 700;
+
+  &.blue { background: #1268f2; }
+  &.green { background: #14986c; }
+}
+
+// ── Section Head ───────────────────────────────────────────────────────────
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+
+  h2 {
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.55rem, 3vw, 2.2rem);
+  }
+
+  p {
+    margin: 0;
+    color: var(--muted);
+  }
+}
+
+// ── Animations ─────────────────────────────────────────────────────────────
+.reveal {
+  animation: fade-up 640ms ease both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// ── Tip Box (global utility) ───────────────────────────────────────────────
+.tip-box {
+  background: linear-gradient(95deg, #dff8ff, #e8fff4);
+  border: 1px solid #b3e8f8;
+  color: #1c4e65;
+  border-radius: var(--radius-md);
+  padding: 0.95rem 1rem;
+  line-height: 1.55;
+}

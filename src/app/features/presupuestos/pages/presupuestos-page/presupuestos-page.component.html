@@ -1,0 +1,126 @@
+<section class="section-head reveal">
+  <h2>Estimación de Presupuestos</h2>
+  <p>Estima el presupuesto total de desarrollo de software.</p>
+</section>
+
+<section class="budget-grid reveal" aria-label="Formulario y resumen de presupuesto">
+  <!-- Datos del Proyecto -->
+  <article class="budget-card">
+    <div class="budget-card__head">
+      <h3>Datos del Proyecto</h3>
+    </div>
+
+    <div class="budget-card__body">
+      <p class="budget-label">Nombre del Proyecto</p>
+      <input class="budget-input" type="text" [(ngModel)]="projectName" />
+
+      <div class="budget-metrics">
+        <div class="budget-metric">
+          <p class="budget-label">Duración (meses)</p>
+          <input type="number" [(ngModel)]="duration" />
+        </div>
+        <div class="budget-metric">
+          <p class="budget-label">Tamaño del Equipo</p>
+          <input type="number" [(ngModel)]="teamSize" />
+        </div>
+      </div>
+
+      <p class="budget-label">Salario Promedio Mensual ($)</p>
+      <input class="budget-input" type="number" [(ngModel)]="avgSalary" />
+      <p class="budget-note">Costo mensual por persona: {{ monthlyCostPerPerson | currency:'USD':'symbol':'1.0-0' }}</p>
+
+      <div class="budget-metrics">
+        <div class="budget-metric">
+          <p class="budget-label">Infraestructura Mensual ($)</p>
+          <input type="number" [(ngModel)]="infraMonthly" />
+        </div>
+        <div class="budget-metric">
+          <p class="budget-label">Licencias Mensuales ($)</p>
+          <input type="number" [(ngModel)]="licensesMonthly" />
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Desglose + Distribución -->
+  <div class="budget-stack">
+    <article class="budget-card">
+      <div class="budget-card__head">
+        <h3>Desglose del Presupuesto</h3>
+      </div>
+
+      <div class="budget-card__body budget-breakdown">
+        <div class="budget-line">
+          <span>Personal</span>
+          <strong>{{ personalCost | currency:'USD':'symbol':'1.0-0' }}</strong>
+          <span>{{ personalPercent | number:'1.1-1' }}%</span>
+        </div>
+        <div class="budget-line">
+          <span>Infraestructura</span>
+          <strong>{{ infraCost | currency:'USD':'symbol':'1.0-0' }}</strong>
+          <span>{{ infraPercent | number:'1.1-1' }}%</span>
+        </div>
+        <div class="budget-line">
+          <span>Licencias</span>
+          <strong>{{ licenseCost | currency:'USD':'symbol':'1.0-0' }}</strong>
+          <span>{{ licensePercent | number:'1.1-1' }}%</span>
+        </div>
+        <div class="budget-line total">
+          <span>Subtotal</span>
+          <strong>{{ subtotal | currency:'USD':'symbol':'1.0-0' }}</strong>
+          <span></span>
+        </div>
+        <div class="budget-line muted">
+          <span>Contingencia</span>
+          <strong>{{ contingency | currency:'USD':'symbol':'1.0-0' }}</strong>
+          <span>{{ contingencyPercent | number:'1.1-1' }}%</span>
+        </div>
+        <div class="budget-line grand">
+          <span>Total Presupuesto</span>
+          <strong>{{ totalBudget | currency:'USD':'symbol':'1.0-0' }}</strong>
+          <span></span>
+        </div>
+      </div>
+    </article>
+
+    <article class="budget-card">
+      <div class="budget-card__head">
+        <h3>Distribución de Costos</h3>
+      </div>
+
+      <div class="budget-card__body budget-bars">
+        <div class="budget-bar-row">
+          <span>Personal</span>
+          <span>{{ personalPercent | number:'1.1-1' }}%</span>
+          <div class="budget-track">
+            <div class="budget-fill personal" [style.width.%]="personalPercent"></div>
+          </div>
+        </div>
+
+        <div class="budget-bar-row">
+          <span>Infraestructura</span>
+          <span>{{ infraPercent | number:'1.1-1' }}%</span>
+          <div class="budget-track">
+            <div class="budget-fill infra" [style.width.%]="infraPercent"></div>
+          </div>
+        </div>
+
+        <div class="budget-bar-row">
+          <span>Licencias</span>
+          <span>{{ licensePercent | number:'1.1-1' }}%</span>
+          <div class="budget-track">
+            <div class="budget-fill lic" [style.width.%]="licensePercent"></div>
+          </div>
+        </div>
+
+        <div class="budget-bar-row">
+          <span>Contingencia</span>
+          <span>{{ contingencyPercent | number:'1.1-1' }}%</span>
+          <div class="budget-track">
+            <div class="budget-fill cont" [style.width.%]="contingencyPercent"></div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>

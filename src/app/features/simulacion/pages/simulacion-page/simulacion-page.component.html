@@ -1,0 +1,110 @@
+<section class="section-head reveal">
+  <h2>Simulación de Escenarios</h2>
+  <p>Compara diferentes escenarios financieros del proyecto.</p>
+</section>
+
+<!-- Scenario Cards -->
+<section class="sim-scenarios reveal" aria-label="Escenarios de simulación">
+  <article
+    *ngFor="let s of scenarios"
+    class="sim-card"
+    [ngClass]="s.type">
+    <div class="sim-card__head">
+      <h3>{{ s.name }}</h3>
+      <span *ngIf="s.tag" class="sim-tag">{{ s.tag }}</span>
+      <span *ngIf="!s.tag && s.icon">{{ s.icon }}</span>
+    </div>
+    <div class="sim-card__body">
+      <p class="sim-label">Equipo</p>
+      <input class="sim-input" type="number" [(ngModel)]="s.team" />
+
+      <p class="sim-label">Duración (meses)</p>
+      <input class="sim-input" type="number" [(ngModel)]="s.duration" />
+
+      <p class="sim-label">Salario Promedio</p>
+      <input class="sim-input" type="number" [(ngModel)]="s.salary" />
+
+      <p class="sim-label">Overhead (%)</p>
+      <input class="sim-input" type="number" [(ngModel)]="s.overhead" />
+
+      <div class="sim-total" [ngClass]="s.type">
+        <p>Costo Total</p>
+        <strong>{{ getCost(s) | currency:'USD':'symbol':'1.0-0' }}</strong>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- Charts -->
+<section class="sim-charts reveal" aria-label="Gráficos comparativos">
+  <article class="sim-chart-card">
+    <h3>Comparación de Costos</h3>
+    <div class="sim-chart-body">
+      <div class="sim-bars">
+        <div
+          *ngFor="let s of scenarios"
+          class="sim-bar"
+          [ngClass]="s.type"
+          [style.height.%]="getBarHeight(s)">
+        </div>
+      </div>
+      <div class="sim-bar-labels">
+        <span>Optimista</span>
+        <span>Realista</span>
+        <span>Pesimista</span>
+      </div>
+    </div>
+  </article>
+
+  <article class="sim-chart-card">
+    <h3>Acumulado en el Tiempo</h3>
+    <div class="sim-chart-body">
+      <div class="sim-lines" aria-hidden="true">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+          <polyline
+            points="0,92 15,84 30,76 45,68 60,60 75,53 100,44"
+            fill="none"
+            stroke="#14986c"
+            stroke-width="0.8" />
+          <polyline
+            points="0,92 20,78 40,64 60,50 80,36 100,22"
+            fill="none"
+            stroke="#1268f2"
+            stroke-width="0.8" />
+          <polyline
+            points="0,92 15,76 30,60 45,44 60,30 75,18 100,6"
+            fill="none"
+            stroke="#e24352"
+            stroke-width="0.8" />
+        </svg>
+      </div>
+      <div class="sim-line-labels">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- Summary Metrics -->
+<section class="sim-summary reveal" aria-label="Resumen de variaciones">
+  <article class="sim-metric blue">
+    <p>Diferencia Optimista vs Realista</p>
+    <strong>{{ diffOptVsReal | currency:'USD':'symbol':'1.0-0' }} ({{ getPercentDiff(diffOptVsReal, getCost(scenarios[0])) | number:'1.1-1' }}%)</strong>
+  </article>
+
+  <article class="sim-metric red">
+    <p>Diferencia Realista vs Pesimista</p>
+    <strong>{{ diffRealVsPes | currency:'USD':'symbol':'1.0-0' }} ({{ getPercentDiff(diffRealVsPes, getCost(scenarios[1])) | number:'1.1-1' }}%)</strong>
+  </article>
+
+  <article class="sim-metric dark">
+    <p>Rango Total de Variación</p>
+    <strong>{{ rangoTotal | currency:'USD':'symbol':'1.0-0' }}</strong>
+  </article>
+</section>

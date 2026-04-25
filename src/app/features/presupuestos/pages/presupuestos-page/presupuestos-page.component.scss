@@ -1,0 +1,171 @@
+// ── Budget Grid ────────────────────────────────────────────────────────────
+.budget-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.budget-stack {
+  display: grid;
+  gap: 1rem;
+}
+
+.budget-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.budget-card__head {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--line);
+
+  h3 {
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.22rem, 2.6vw, 1.85rem);
+  }
+}
+
+.budget-card__body {
+  padding: 1rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.budget-label {
+  margin: 0;
+  color: #1f2f45;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.budget-input,
+.budget-metric input {
+  width: 100%;
+  min-height: 2.55rem;
+  border: 1px solid #cfdae9;
+  border-radius: 10px;
+  font: inherit;
+  color: #2b3950;
+  padding: 0.5rem 0.75rem;
+  background: #ffffff;
+  transition: border-color 180ms ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--brand-a);
+  }
+}
+
+.budget-metric {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.budget-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.budget-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.97rem;
+}
+
+// ── Breakdown ──────────────────────────────────────────────────────────────
+.budget-breakdown {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.budget-line {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 0.8rem;
+  align-items: baseline;
+  color: #223247;
+  font-size: 1.08rem;
+
+  span:last-child {
+    color: #5d6f84;
+  }
+
+  &.muted {
+    color: #5f7084;
+  }
+
+  &.total {
+    border-top: 1px solid var(--line);
+    padding-top: 0.55rem;
+    margin-top: 0.15rem;
+    font-weight: 700;
+  }
+
+  &.grand {
+    color: #14986c;
+    font-weight: 700;
+    font-size: 1.08rem;
+
+    strong {
+      color: #14986c;
+      font-size: clamp(2rem, 4.5vw, 2.7rem);
+      line-height: 1;
+    }
+  }
+}
+
+// ── Distribution Bars ──────────────────────────────────────────────────────
+.budget-bars {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.budget-bar-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.65rem;
+  align-items: center;
+  color: #233246;
+  font-weight: 600;
+}
+
+.budget-track {
+  height: 18px;
+  border-radius: 999px;
+  background: #e3e9f3;
+  overflow: hidden;
+  grid-column: 1 / -1;
+}
+
+.budget-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 400ms ease;
+
+  &.personal { background: linear-gradient(90deg, #1268f2, #3d8cff); }
+  &.infra    { background: linear-gradient(90deg, #ef7f18, #ff9d48); }
+  &.lic      { background: linear-gradient(90deg, #5d38c2, #8062d4); }
+  &.cont     { background: linear-gradient(90deg, #14986c, #23b885); }
+}
+
+// ── Responsive ─────────────────────────────────────────────────────────────
+@media (max-width: 980px) {
+  .budget-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .budget-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .budget-line {
+    grid-template-columns: 1fr auto;
+  }
+}

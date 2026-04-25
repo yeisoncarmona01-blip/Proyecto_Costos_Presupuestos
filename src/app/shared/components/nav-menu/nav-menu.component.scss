@@ -1,0 +1,38 @@
+:host {
+  display: block;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.85rem clamp(1rem, 2.5vw, 2.3rem);
+  background: #ffffffc9;
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.menu__item {
+  color: #1e56ac;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.52rem 0.95rem;
+  font-weight: 500;
+  transition: all 180ms ease;
+
+  &:hover,
+  &.is-active {
+    background: #e8f0ff;
+    border-color: #cadeff;
+  }
+}
+
+@media (max-width: 720px) {
+  .menu {
+    position: static;
+  }
+}

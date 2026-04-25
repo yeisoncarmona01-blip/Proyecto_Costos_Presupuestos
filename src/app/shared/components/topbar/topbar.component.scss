@@ -1,0 +1,63 @@
+:host {
+  display: block;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.05rem clamp(1rem, 2.5vw, 2.3rem);
+  background: linear-gradient(92deg, var(--brand-a), var(--brand-c));
+  color: white;
+  box-shadow: var(--shadow-soft);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.brand__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.18);
+  display: grid;
+  place-items: center;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.brand__text {
+  display: grid;
+  gap: 0.05rem;
+
+  strong {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.65rem;
+    line-height: 1;
+  }
+
+  span {
+    opacity: 0.9;
+    font-size: 1rem;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+@media (max-width: 720px) {
+  .topbar {
+    flex-wrap: wrap;
+  }
+
+  .brand__text span {
+    font-size: 0.9rem;
+  }
+}

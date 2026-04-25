@@ -1,0 +1,145 @@
+// ── Hero Section ───────────────────────────────────────────────────────────
+.hero {
+  background: linear-gradient(115deg, #1268f2 0%, #3079f7 45%, #2f67ce 100%);
+  color: #f9fbff;
+  border-radius: var(--radius-lg);
+  padding: clamp(1.2rem, 4vw, 2.2rem);
+  box-shadow: var(--shadow-soft);
+}
+
+.hero__eyebrow {
+  margin: 0;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.9;
+}
+
+.hero h1 {
+  margin: 0.55rem 0;
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1.7rem, 4.1vw, 3rem);
+  line-height: 1.12;
+  max-width: 26ch;
+}
+
+.hero p {
+  margin: 0;
+  max-width: 72ch;
+  font-size: clamp(1rem, 2vw, 1.24rem);
+  color: #e6f0ff;
+}
+
+.hero__cta {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+// ── Cards Grid ─────────────────────────────────────────────────────────────
+.cards {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--accent);
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+  box-shadow: var(--shadow-card);
+  display: grid;
+  gap: 0.8rem;
+  animation: card-rise 620ms ease both;
+  animation-delay: var(--delay);
+}
+
+.card__icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.card h3 {
+  margin: 0;
+  font-size: clamp(1.22rem, 2.4vw, 2rem);
+  line-height: 1.2;
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+  min-height: 2.7em;
+}
+
+// ── About Section ──────────────────────────────────────────────────────────
+.about {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.1rem, 2.2vw, 1.5rem);
+  box-shadow: var(--shadow-card);
+
+  h2 {
+    margin: 0 0 0.55rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.85rem;
+  }
+
+  p {
+    margin: 0;
+    color: #2f3a49;
+    line-height: 1.58;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: #204a95;
+    display: grid;
+    gap: 0.45rem;
+    align-content: start;
+  }
+
+  li {
+    line-height: 1.5;
+  }
+}
+
+// ── Responsive ─────────────────────────────────────────────────────────────
+@media (max-width: 980px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__cta {
+    width: 100%;
+
+    .btn {
+      flex: 1 1 100%;
+    }
+  }
+}

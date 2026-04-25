@@ -1,0 +1,66 @@
+<section class="section-head reveal">
+  <h2>Calculadora de Costos</h2>
+  <p>Calcula costos directos e indirectos del proyecto.</p>
+</section>
+
+<section class="calc-grid reveal" aria-label="Panel de costos">
+  <!-- Costos Directos -->
+  <article class="calc-card">
+    <div class="calc-card__head">
+      <h3>Costos Directos</h3>
+      <button class="btn btn--add blue" type="button" (click)="addDirect()">+ Agregar</button>
+    </div>
+
+    <div class="calc-card__body">
+      <p>Costos atribuibles directamente al proyecto (salarios, licencias, hardware).</p>
+
+      <div class="calc-row" *ngFor="let item of directCosts; let i = index">
+        <input class="calc-input" type="text" [(ngModel)]="item.name" placeholder="Concepto" />
+        <input class="calc-input" type="number" [(ngModel)]="item.value" placeholder="$0" />
+        <button class="calc-delete" type="button" (click)="removeDirect(i)" aria-label="Eliminar item directo">×</button>
+      </div>
+
+      <div class="calc-total blue">
+        <span>Total Directo:</span>
+        <strong>{{ totalDirecto | currency:'USD':'symbol':'1.0-0' }}</strong>
+      </div>
+    </div>
+  </article>
+
+  <!-- Costos Indirectos -->
+  <article class="calc-card">
+    <div class="calc-card__head">
+      <h3>Costos Indirectos</h3>
+      <button class="btn btn--add green" type="button" (click)="addIndirect()">+ Agregar</button>
+    </div>
+
+    <div class="calc-card__body">
+      <p>Costos no directamente atribuibles (servicios, administración, infraestructura).</p>
+
+      <div class="calc-row" *ngFor="let item of indirectCosts; let i = index">
+        <input class="calc-input" type="text" [(ngModel)]="item.name" placeholder="Concepto" />
+        <input class="calc-input" type="number" [(ngModel)]="item.value" placeholder="$0" />
+        <button class="calc-delete" type="button" (click)="removeIndirect(i)" aria-label="Eliminar item indirecto">×</button>
+      </div>
+
+      <div class="calc-total green">
+        <span>Total Indirecto:</span>
+        <strong>{{ totalIndirecto | currency:'USD':'symbol':'1.0-0' }}</strong>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="project-total reveal" aria-label="Total del proyecto">
+  <div>
+    <h3>Costo Total del Proyecto</h3>
+    <p>Suma de costos directos e indirectos estimados.</p>
+  </div>
+  <strong>{{ totalProyecto | currency:'USD':'symbol':'1.0-0' }}</strong>
+</section>
+
+<section class="tip-box reveal" aria-label="Consejo de uso">
+  <strong>Consejo:</strong> Los costos directos son fácilmente identificables con el
+  proyecto. Los costos indirectos son compartidos entre múltiples procesos, por lo que
+  conviene revisarlos por períodos.
+</section>

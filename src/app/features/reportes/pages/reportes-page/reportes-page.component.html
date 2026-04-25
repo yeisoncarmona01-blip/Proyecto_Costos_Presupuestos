@@ -1,0 +1,84 @@
+<section class="section-head reveal">
+  <h2>Generador de Reportes</h2>
+  <p>Genera reportes detallados de tus estimaciones.</p>
+</section>
+
+<section class="report-grid reveal" aria-label="Formulario y vista previa de reportes">
+  <!-- Información del Proyecto -->
+  <article class="report-card">
+    <div class="report-card__head">
+      <h3>Información del Proyecto</h3>
+    </div>
+
+    <div class="report-card__body">
+      <p class="report-label">Nombre del Proyecto</p>
+      <input class="report-input" type="text" [(ngModel)]="projectName" />
+
+      <p class="report-label">Cliente</p>
+      <input class="report-input" type="text" [(ngModel)]="client" />
+
+      <p class="report-label">Fecha del Reporte</p>
+      <input class="report-input" type="text" [(ngModel)]="reportDate" />
+
+      <div class="report-row">
+        <div>
+          <p class="report-label">Costos Directos ($)</p>
+          <input class="report-input" type="number" [(ngModel)]="directCosts" />
+        </div>
+        <div>
+          <p class="report-label">Costos Indirectos ($)</p>
+          <input class="report-input" type="number" [(ngModel)]="indirectCosts" />
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Vista Previa -->
+  <article class="report-card">
+    <div class="report-card__head">
+      <h3>Vista Previa del Reporte</h3>
+    </div>
+
+    <div class="report-card__body">
+      <h4 class="report-preview-title">{{ projectName }}</h4>
+      <div class="report-meta">
+        <span>Cliente: {{ client }}</span>
+        <span>Fecha: {{ reportDate }}</span>
+      </div>
+
+      <div class="report-table">
+        <div class="report-line">
+          <span>Costos Directos</span>
+          <span>{{ directCosts | currency:'USD':'symbol':'1.0-0' }}</span>
+        </div>
+        <div class="report-line">
+          <span>Costos Indirectos</span>
+          <span>{{ indirectCosts | currency:'USD':'symbol':'1.0-0' }}</span>
+        </div>
+        <div class="report-line total">
+          <span>COSTO TOTAL</span>
+          <span>{{ totalCost | currency:'USD':'symbol':'1.0-0' }}</span>
+        </div>
+      </div>
+
+      <div class="report-metrics">
+        <div class="report-metric">
+          <span>Duración</span>
+          <strong>{{ duration }} meses</strong>
+        </div>
+        <div class="report-metric">
+          <span>Tamaño del Equipo</span>
+          <strong>{{ teamSize }} personas</strong>
+        </div>
+        <div class="report-metric">
+          <span>Costo Mensual</span>
+          <strong>{{ monthlyCost | currency:'USD':'symbol':'1.0-0' }}</strong>
+        </div>
+        <div class="report-metric">
+          <span>Costo por Persona</span>
+          <strong>{{ costPerPerson | currency:'USD':'symbol':'1.0-0' }}</strong>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>

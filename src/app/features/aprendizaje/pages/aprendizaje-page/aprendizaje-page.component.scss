@@ -1,0 +1,111 @@
+// ── Learn Shell ────────────────────────────────────────────────────────────
+.learn-shell {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.learn-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding: 0.9rem;
+  border-bottom: 1px solid var(--line);
+  background: #f7faff;
+}
+
+.learn-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.9rem;
+  border-radius: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #1f5dba;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease;
+
+  &.is-active {
+    background: #1268f2;
+    color: #ffffff;
+  }
+
+  &:hover:not(.is-active) {
+    background: #e8f0ff;
+  }
+}
+
+.learn-content {
+  padding: clamp(1rem, 2vw, 1.3rem);
+  display: grid;
+  gap: 0.9rem;
+
+  h2 {
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.35rem, 2.8vw, 1.9rem);
+  }
+
+  p {
+    margin: 0;
+    color: var(--muted);
+  }
+}
+
+// ── Accordion ──────────────────────────────────────────────────────────────
+.accordion {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.accordion__item {
+  background: #ffffff;
+  border-bottom: 1px solid var(--line);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.accordion__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+  padding: 0.95rem 1rem;
+  font-weight: 600;
+  font-size: 1.12rem;
+  color: #1b2a40;
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: inherit;
+  position: relative;
+  padding-right: 2.5rem;
+
+  &::after {
+    content: '+';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #2d6ddd;
+    font-size: 1.3rem;
+  }
+}
+
+.accordion__item.is-open .accordion__summary::after {
+  content: '−';
+}
+
+.accordion__panel {
+  padding: 0 1rem 0.95rem;
+  color: #3e4a59;
+  line-height: 1.6;
+  animation: fade-up 300ms ease both;
+}

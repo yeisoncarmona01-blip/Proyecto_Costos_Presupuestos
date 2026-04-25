@@ -1,0 +1,83 @@
+<a routerLink="/" class="login-back">← Volver al Inicio</a>
+
+<main class="login-card register-card" aria-label="Formulario de registro">
+  <section class="login-hero">
+    <strong>SoftCost</strong>
+    <p>Crea tu cuenta y comienza a estimar proyectos</p>
+  </section>
+
+  <section class="login-body">
+    <h1 class="login-title">Crear Cuenta</h1>
+    <p class="login-subtitle">Completa el formulario para registrarte</p>
+
+    <div class="register-grid">
+      <div class="register-field">
+        <label class="login-label" for="reg-name">Nombre Completo *</label>
+        <input
+          id="reg-name"
+          class="login-input"
+          type="text"
+          placeholder="Juan Pérez"
+          [(ngModel)]="fullName"
+        />
+      </div>
+
+      <div class="register-field">
+        <label class="login-label" for="reg-email">Correo Electrónico *</label>
+        <input
+          id="reg-email"
+          class="login-input"
+          type="email"
+          placeholder="usuario@ejemplo.com"
+          autocomplete="email"
+          [(ngModel)]="email"
+        />
+      </div>
+
+      <div class="register-field full">
+        <label class="login-label" for="reg-org">Organización (Opcional)</label>
+        <input
+          id="reg-org"
+          class="login-input"
+          type="text"
+          placeholder="Universidad o Empresa"
+          [(ngModel)]="organization"
+        />
+      </div>
+
+      <div class="register-field">
+        <label class="login-label" for="reg-password">Contraseña *</label>
+        <input
+          id="reg-password"
+          class="login-input"
+          type="password"
+          placeholder="********"
+          autocomplete="new-password"
+          [(ngModel)]="password"
+        />
+        <p class="register-note">Mínimo 6 caracteres</p>
+      </div>
+
+      <div class="register-field">
+        <label class="login-label" for="reg-confirm">Confirmar Contraseña *</label>
+        <input
+          id="reg-confirm"
+          class="login-input"
+          type="password"
+          placeholder="********"
+          autocomplete="new-password"
+          [(ngModel)]="confirmPassword"
+        />
+      </div>
+    </div>
+
+    <label class="register-terms" for="reg-terms">
+      <input id="reg-terms" type="checkbox" [(ngModel)]="acceptTerms" />
+      <span>Acepto los términos y condiciones y la política de privacidad</span>
+    </label>
+
+    <button class="login-submit" type="button" (click)="onRegister()">Crear Cuenta</button>
+
+    <p class="auth-switch">¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a></p>
+  </section>
+</main>

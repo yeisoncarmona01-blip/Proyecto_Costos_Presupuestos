@@ -1,0 +1,40 @@
+<section class="section-head reveal">
+  <h2>Material de Aprendizaje</h2>
+  <p>Conceptos fundamentales de costos y presupuestos en ingeniería de software.</p>
+</section>
+
+<section class="learn-shell reveal" aria-label="Contenido de aprendizaje">
+  <div class="learn-tabs" role="tablist" aria-label="Temas de aprendizaje">
+    <a
+      *ngFor="let tab of tabs"
+      (click)="selectTab(tab.id); $event.preventDefault()"
+      [class.is-active]="activeTab === tab.id"
+      class="learn-tab"
+      role="tab"
+      href="#">
+      {{ tab.label }}
+    </a>
+  </div>
+
+  <div class="learn-content" *ngIf="activeTab === 'basicos'">
+    <h2>Conceptos Básicos</h2>
+    <p>Términos y definiciones esenciales para una estimación de costos confiable.</p>
+
+    <div class="accordion">
+      <div
+        *ngFor="let item of accordionItems; let i = index"
+        class="accordion__item"
+        [class.is-open]="item.open">
+        <button
+          class="accordion__summary"
+          (click)="toggleAccordion(i)"
+          [attr.aria-expanded]="item.open">
+          {{ item.title }}
+        </button>
+        <div class="accordion__panel" *ngIf="item.open">
+          {{ item.content }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
