@@ -30,6 +30,10 @@
       [(ngModel)]="password"
     />
 
+    <p class="auth-message auth-message--error" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </p>
+
     <div class="login-row">
       <label class="login-check" for="login-remember">
         <input id="login-remember" type="checkbox" [(ngModel)]="rememberMe" />
@@ -38,7 +42,9 @@
       <a class="login-link" href="#">¿Olvidaste tu contraseña?</a>
     </div>
 
-    <button class="login-submit" type="button" (click)="onLogin()">Iniciar Sesión</button>
+    <button class="login-submit" type="button" (click)="onLogin()" [disabled]="isLoading">
+      {{ isLoading ? 'Ingresando...' : 'Iniciar Sesión' }}
+    </button>
 
     <div class="login-divider">o continúa con</div>
 

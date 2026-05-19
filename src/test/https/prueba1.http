@@ -1,0 +1,70 @@
+POST http://localhost:8080/api/v1/softcost
+Content-Type: application/json
+
+{
+  "nombreProyecto": "SOFTCOST APP",
+  "materiales": 5000,
+  "salarios": 8000,
+  "infraestructura": 2000,
+  "licencias": 1000,
+  "otrosGastos": 500
+}
+
+### LISTAR
+GET http://localhost:8080/api/v1/softcost
+
+###
+
+### CREAR
+POST http://localhost:8080/api/v1/softcost
+Content-Type: application/json
+
+{
+  "nombreProyecto": "Nuevo Proyecto",
+  "materiales": 4000,
+  "salarios": 9000,
+  "infraestructura": 3000,
+  "licencias": 1200,
+  "otrosGastos": 600
+}
+
+###
+
+### BUSCAR POR ID
+GET http://localhost:8080/api/v1/softcost/1
+
+###
+
+### ELIMINAR
+DELETE http://localhost:8080/api/v1/softcost/1
+
+
+### PAGINACION
+GET http://localhost:8080/api/v1/softcost/page/0
+
+### LISTAR ID(NO ENCONTRADO)
+
+GET http://localhost:8080/api/v1/softcost/999
+
+### LISTAR
+
+GET http://localhost:8080/api/v1/auth
+
+
+
+### LISTAR
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "jorge@gmail.com",
+  "password": "12345678"
+}
+
+###
+
+
+# curl -v http://localhost:8080/api/v1/auth
+GET http://localhost:8080/api/v1/auth
+
+###

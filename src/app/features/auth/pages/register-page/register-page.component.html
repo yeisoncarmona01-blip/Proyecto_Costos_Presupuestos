@@ -71,12 +71,18 @@
       </div>
     </div>
 
+    <p class="auth-message auth-message--error" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </p>
+
     <label class="register-terms" for="reg-terms">
       <input id="reg-terms" type="checkbox" [(ngModel)]="acceptTerms" />
       <span>Acepto los términos y condiciones y la política de privacidad</span>
     </label>
 
-    <button class="login-submit" type="button" (click)="onRegister()">Crear Cuenta</button>
+    <button class="login-submit" type="button" (click)="onRegister()" [disabled]="isLoading">
+      {{ isLoading ? 'Creando cuenta...' : 'Crear Cuenta' }}
+    </button>
 
     <p class="auth-switch">¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a></p>
   </section>
