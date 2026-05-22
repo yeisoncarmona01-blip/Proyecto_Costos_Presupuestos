@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CalculadoraService, CalculoCostosResponse } from '../../services/calculadora.service';
 
 interface CostItem {
   name: string;
@@ -11,6 +12,12 @@ interface CostItem {
   styleUrls: ['./calculadora-page.component.scss']
 })
 export class CalculadoraPageComponent {
+  totalCalculado: number | null = null;
+  cargando = false;
+  errorServicio = false;
+
+  constructor(private calculadoraService: CalculadoraService) {}
+
   directCosts: CostItem[] = [
     { name: 'Salarios desarrolladores', value: 0 }
   ];
@@ -28,7 +35,31 @@ export class CalculadoraPageComponent {
   }
 
   get totalProyecto(): number {
-    return this.totalDirecto + this.totalIndirecto;
+    return this.totalCalculado !== null ? this.totalCalculado : (this.totalDirecto + this.totalIndirecto);
+  }
+
+  calcularConMicroservicio(): void {
+    const request = {
+      costosDirectos: this.directCosts,
+      costosIndirectos: this.indirectCosts
+    };
+
+    this.cargando = true;
+    this.errorServicio = false;
+    
+    this.calculadoraService.calcularTotal(request).subscribe({
+      next: (response: CalculoCostosResponse) => {
+        this.totalCalculado = response.totalProyecto;
+        this.cargando = false;
+      },
+      error: (error: any) => {
+        console.error('Error al calcular con el microservicio:', error);
+        this.errorServicio = true;
+        this.cargando = false;
+        // Si falla, volvemos a mostrar la suma local temporal
+        this.totalCalculado = null;
+      }
+    });
   }
 
   addDirect(): void {

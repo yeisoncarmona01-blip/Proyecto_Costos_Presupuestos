@@ -55,6 +55,12 @@
   <div>
     <h3>Costo Total del Proyecto</h3>
     <p>Suma de costos directos e indirectos estimados.</p>
+    <button class="btn btn--add blue" (click)="calcularConMicroservicio()" [disabled]="cargando" style="margin-top: 15px; width: auto; padding: 0.5rem 1rem;">
+      {{ cargando ? 'Calculando con API...' : 'Calcular Total (Microservicio)' }}
+    </button>
+    <p *ngIf="errorServicio" style="color: #e74c3c; margin-top: 8px; font-size: 0.85em;">
+      ⚠️ Error al conectar con el microservicio. Se muestra el cálculo local.
+    </p>
   </div>
   <strong>{{ totalProyecto | currency:'USD':'symbol':'1.0-0' }}</strong>
 </section>
