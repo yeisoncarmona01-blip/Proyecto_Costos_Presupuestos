@@ -1,0 +1,50 @@
+package com.denkitronik.usuarioservice.config;
+
+import org.keycloak.OAuth2Constants;
+import org.keycloak.admin.client.Keycloak;
+import org.keycloak.admin.client.KeycloakBuilder;
+import org.keycloak.admin.client.resource.RealmResource;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * Configura el cliente de administración de Keycloak.
+ *
+ * Usa un service account (client_credentials) para autenticarse:
+ * el cliente "usuario-service" en Keycloak tiene serviceAccountsEnabled=true
+ * y su cuenta de servicio tiene el rol realm-management → manage-users.
+ *
+ * Esto permite gestionar usuarios sin usar credenciales de administrador.
+ */
+@Configuration
+public class KeycloakAdminConfig {
+
+    @Value("${keycloak.server-url}")
+    private String serverUrl;
+
+    @Value("${keycloak.realm}")
+    private String realm;
+
+    @Value("${keycloak.client-id}")
+    private String clientId;
+
+    @Value("${keycloak.client-secret}")
+    private String clientSecret;
+
+    @Bean
+    public Keycloak keycloak() {
+        return KeycloakBuilder.builder()
+                .serverUrl(serverUrl)
+                .realm(realm)
+                .grantType(OAuth2Constants.CLIENT_CREDENTIALS)
+                .clientId(clientId)
+                .clientSecret(clientSecret)
+                .build();
+    }
+
+    @Bean
+    public RealmResource realmResource(Keycloak keycloak) {
+        return keycloak.realm(realm);
+    }
+}
