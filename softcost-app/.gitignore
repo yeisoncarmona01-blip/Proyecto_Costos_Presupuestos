@@ -31,3 +31,12 @@ build/
 
 ### VS Code ###
 .vscode/
+node_modules/
+.angular/
+dist/
+target/
+.idea/
+.vscode/
+*.log
+.angular/
+node_modules/
