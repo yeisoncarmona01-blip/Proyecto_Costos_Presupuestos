@@ -1,0 +1,48 @@
+<section id="inicio" class="hero reveal">
+  <p class="hero__eyebrow">Bienvenido a SoftCost</p>
+  <h1>Convierte teoría en decisiones de costo reales</h1>
+  <p>
+    Plataforma educativa para practicar cálculo de costos directos e indirectos,
+    estimaciones de presupuesto y análisis de escenarios en proyectos de software.
+  </p>
+  <div class="hero__cta">
+    <a routerLink="/calculadora" class="btn btn--solid">Explorar herramientas</a>
+    <a routerLink="/aprendizaje" class="btn btn--ghost">Ver enfoque educativo</a>
+  </div>
+</section>
+
+<section id="herramientas" class="reveal">
+  <div class="section-head">
+    <h2>Herramientas disponibles</h2>
+    <p>Todo lo necesario para practicar Costos y Presupuestos en un mismo lugar.</p>
+  </div>
+
+  <div class="cards">
+    <article
+      *ngFor="let tool of tools; let i = index"
+      class="card"
+      [style.--accent]="tool.accent"
+      [style.--accent-soft]="tool.accentSoft"
+      [style.--delay]="(i * 0.08) + 's'">
+      <div class="card__icon" aria-hidden="true">{{ tool.number }}</div>
+      <h3>{{ tool.title }}</h3>
+      <p>{{ tool.description }}</p>
+      <a [routerLink]="tool.route" class="btn btn--outline">Acceder</a>
+    </article>
+  </div>
+</section>
+
+<section id="aprendizaje" class="about reveal">
+  <div>
+    <h2>Sobre esta plataforma</h2>
+    <p>
+      SoftCost está pensada para estudiantes de Ingeniería de Sistemas que cursan
+      la asignatura de Costos y Presupuestos. Su enfoque combina práctica,
+      retroalimentación visual y toma de decisiones basada en datos.
+    </p>
+  </div>
+
+  <ul>
+    <li *ngFor="let feature of features">{{ feature }}</li>
+  </ul>
+</section>

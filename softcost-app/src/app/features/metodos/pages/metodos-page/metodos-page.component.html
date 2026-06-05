@@ -1,0 +1,71 @@
+<section class="section-head reveal">
+  <h2>Métodos de Estimación</h2>
+  <p>Aplica diferentes técnicas de estimación de costos.</p>
+</section>
+
+<section class="method-shell reveal" aria-label="Panel de métodos de estimación">
+  <div class="method-tabs" role="tablist" aria-label="Métodos disponibles">
+    <a
+      *ngFor="let tab of tabs"
+      (click)="selectTab(tab.id); $event.preventDefault()"
+      [class.is-active]="activeTab === tab.id"
+      class="method-tab"
+      role="tab"
+      href="#">
+      {{ tab.label }}
+    </a>
+  </div>
+
+  <div class="method-content" *ngIf="activeTab === 'horas'">
+    <article class="method-block">
+      <h3>Parámetros</h3>
+      <div class="method-form">
+        <p class="method-label">Número de Tareas</p>
+        <input class="method-input" type="number" [(ngModel)]="numTareas" />
+
+        <p class="method-label">Horas Promedio por Tarea</p>
+        <input class="method-input" type="number" [(ngModel)]="horasPromedio" />
+
+        <p class="method-label">Tarifa por Hora ($)</p>
+        <input class="method-input" type="number" [(ngModel)]="tarifaHora" />
+      </div>
+    </article>
+
+    <article class="method-block">
+      <h3>Resultados</h3>
+      <div class="method-result">
+        <p *ngIf="remoteTotalHoras === null && !loadingRemote">
+          Total de Horas
+          <strong class="blue">— hrs</strong>
+        </p>
+        <p *ngIf="remoteTotalHoras !== null">
+          Total de Horas (servicio)
+          <strong class="blue">{{ remoteTotalHoras | number }} hrs</strong>
+        </p>
+
+        <p *ngIf="remoteCostoTotal === null && !loadingRemote">
+          Costo Total Estimado
+          <strong class="green">—</strong>
+        </p>
+        <p *ngIf="remoteCostoTotal !== null">
+          Costo Total (servicio)
+          <strong class="green">{{ remoteCostoTotal | currency:'USD':'symbol':'1.0-0' }}</strong>
+        </p>
+
+        <p *ngIf="loadingRemote" class="muted">Consultando servicio externo…</p>
+        <p *ngIf="remoteError" class="error">{{ remoteError }}</p>
+      </div>
+
+      <div class="method-actions">
+        <button class="btn" type="button" (click)="calcularConServicio()" [disabled]="loadingRemote">Calcular y verificar conexión</button>
+        <p *ngIf="serviceConnected === true" class="success">Servicio de horas conectado</p>
+        <p *ngIf="serviceConnected === false" class="error">Servicio de horas NO conectado</p>
+      </div>
+
+      <div class="method-formula">
+        <strong>Fórmula:</strong> Total Horas = Tareas × Horas Promedio<br />
+        Costo = Total Horas × Tarifa por Hora
+      </div>
+    </article>
+  </div>
+</section>

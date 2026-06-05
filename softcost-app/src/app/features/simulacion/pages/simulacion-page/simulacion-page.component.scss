@@ -1,0 +1,251 @@
+// ── Scenario Cards ─────────────────────────────────────────────────────────
+.sim-scenarios {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.sim-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+
+  &.optimista { border-color: #67c7a0; }
+  &.realista  { border-color: #4b83f0; }
+  &.pesimista { border-color: #f08a93; }
+}
+
+.sim-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid;
+
+  h3 {
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  }
+}
+
+.sim-card.optimista .sim-card__head {
+  color: #14986c;
+  border-bottom-color: #67c7a0;
+  background: #f0fcf6;
+}
+
+.sim-card.realista .sim-card__head {
+  color: #1268f2;
+  border-bottom-color: #4b83f0;
+  background: #eff5ff;
+}
+
+.sim-card.pesimista .sim-card__head {
+  color: #e24352;
+  border-bottom-color: #f08a93;
+  background: #fff1f3;
+}
+
+.sim-tag {
+  background: #1268f2;
+  color: #fff;
+  font-size: 0.9rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.sim-card__body {
+  padding: 1rem;
+  display: grid;
+  gap: 0.68rem;
+}
+
+.sim-label {
+  margin: 0;
+  color: #1f2f44;
+  font-weight: 600;
+  font-size: 1.04rem;
+}
+
+.sim-input {
+  width: 100%;
+  min-height: 2.5rem;
+  border: 1px solid #cfdae9;
+  border-radius: 10px;
+  background: #fff;
+  color: #2c3a50;
+  font: inherit;
+  padding: 0.48rem 0.75rem;
+  transition: border-color 180ms ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--brand-a);
+  }
+}
+
+.sim-total {
+  margin-top: 0.25rem;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  text-align: center;
+
+  p {
+    margin: 0;
+    color: #405168;
+  }
+
+  strong {
+    display: block;
+    margin-top: 0.2rem;
+    font-size: clamp(2rem, 4.1vw, 2.9rem);
+    line-height: 1;
+  }
+
+  &.optimista {
+    background: #e6f8ef;
+    strong { color: #14986c; }
+  }
+
+  &.realista {
+    background: #eaf1ff;
+    strong { color: #1268f2; }
+  }
+
+  &.pesimista {
+    background: #ffecef;
+    strong { color: #e24352; }
+  }
+}
+
+// ── Charts ─────────────────────────────────────────────────────────────────
+.sim-charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.sim-chart-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+
+  h3 {
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+.sim-chart-body {
+  padding: 1rem;
+}
+
+.sim-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  gap: 1rem;
+  min-height: 230px;
+  padding: 0.5rem 0.2rem 0.2rem;
+  border-bottom: 2px solid #aeb9cb;
+  background-image: linear-gradient(to top, rgba(100, 120, 150, 0.16) 1px, transparent 1px);
+  background-size: 100% 46px;
+}
+
+.sim-bar {
+  width: min(110px, 24%);
+  border-radius: 8px 8px 0 0;
+  transition: height 400ms ease;
+
+  &.optimista { background: linear-gradient(to top, #14986c, #23b885); }
+  &.realista  { background: linear-gradient(to top, #1268f2, #3d8cff); }
+  &.pesimista { background: linear-gradient(to top, #e24352, #f06b77); }
+}
+
+.sim-bar-labels {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-around;
+  color: #4c5f79;
+  font-weight: 500;
+}
+
+.sim-lines {
+  min-height: 230px;
+  border-left: 2px solid #aeb9cb;
+  border-bottom: 2px solid #aeb9cb;
+  position: relative;
+  background-image:
+    linear-gradient(to right, rgba(100, 120, 150, 0.16) 1px, transparent 1px),
+    linear-gradient(to top, rgba(100, 120, 150, 0.16) 1px, transparent 1px);
+  background-size: calc(100% / 7) 100%, 100% 46px;
+  margin-left: 0.35rem;
+
+  svg {
+    position: absolute;
+    inset: 0;
+  }
+}
+
+.sim-line-labels {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  color: #4c5f79;
+  font-weight: 500;
+}
+
+// ── Summary ────────────────────────────────────────────────────────────────
+.sim-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.sim-metric {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: 0.95rem 1rem;
+
+  p {
+    margin: 0;
+    color: #4c5d74;
+  }
+
+  strong {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: clamp(1.5rem, 2.9vw, 2.2rem);
+    line-height: 1.1;
+  }
+
+  &.blue strong { color: #1268f2; }
+  &.red strong  { color: #e24352; }
+  &.dark strong { color: #1f2d43; }
+}
+
+// ── Responsive ─────────────────────────────────────────────────────────────
+@media (max-width: 1150px) {
+  .sim-scenarios {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 980px) {
+  .sim-charts,
+  .sim-summary {
+    grid-template-columns: 1fr;
+  }
+}

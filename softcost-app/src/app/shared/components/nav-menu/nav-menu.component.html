@@ -1,0 +1,10 @@
+<nav class="menu" aria-label="Navegación principal">
+  <a
+    *ngFor="let item of menuItems"
+    [routerLink]="item.route"
+    routerLinkActive="is-active"
+    [routerLinkActiveOptions]="{ exact: item.route === '/' }"
+    class="menu__item">
+    {{ item.label }}
+  </a>
+</nav>
