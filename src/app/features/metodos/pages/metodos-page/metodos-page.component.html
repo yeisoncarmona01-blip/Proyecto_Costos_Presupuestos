@@ -34,14 +34,32 @@
     <article class="method-block">
       <h3>Resultados</h3>
       <div class="method-result">
-        <p>
+        <p *ngIf="remoteTotalHoras === null && !loadingRemote">
           Total de Horas
-          <strong class="blue">{{ totalHoras | number }} hrs</strong>
+          <strong class="blue">— hrs</strong>
         </p>
-        <p>
+        <p *ngIf="remoteTotalHoras !== null">
+          Total de Horas (servicio)
+          <strong class="blue">{{ remoteTotalHoras | number }} hrs</strong>
+        </p>
+
+        <p *ngIf="remoteCostoTotal === null && !loadingRemote">
           Costo Total Estimado
-          <strong class="green">{{ costoTotalHoras | currency:'USD':'symbol':'1.0-0' }}</strong>
+          <strong class="green">—</strong>
         </p>
+        <p *ngIf="remoteCostoTotal !== null">
+          Costo Total (servicio)
+          <strong class="green">{{ remoteCostoTotal | currency:'USD':'symbol':'1.0-0' }}</strong>
+        </p>
+
+        <p *ngIf="loadingRemote" class="muted">Consultando servicio externo…</p>
+        <p *ngIf="remoteError" class="error">{{ remoteError }}</p>
+      </div>
+
+      <div class="method-actions">
+        <button class="btn" type="button" (click)="calcularConServicio()" [disabled]="loadingRemote">Calcular y verificar conexión</button>
+        <p *ngIf="serviceConnected === true" class="success">Servicio de horas conectado</p>
+        <p *ngIf="serviceConnected === false" class="error">Servicio de horas NO conectado</p>
       </div>
 
       <div class="method-formula">

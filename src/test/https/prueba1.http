@@ -1,0 +1,134 @@
+POST http://localhost:8080/api/v1/softcost
+Content-Type: application/json
+
+{
+  "nombreProyecto": "SOFTCOST APP",
+  "materiales": 5000,
+  "salarios": 8000,
+  "infraestructura": 2000,
+  "licencias": 1000,
+  "otrosGastos": 500
+}
+
+### LISTAR
+GET http://localhost:8080/api/v1/softcost
+
+###
+
+### CREAR
+POST http://localhost:8080/api/v1/softcost
+Content-Type: application/json
+
+{
+  "nombreProyecto": "Nuevo Proyecto",
+  "materiales": 4000,
+  "salarios": 9000,
+  "infraestructura": 3000,
+  "licencias": 1200,
+  "otrosGastos": 600
+}
+
+###
+
+### BUSCAR POR ID
+GET http://localhost:8080/api/v1/softcost/1
+
+###
+
+### ELIMINAR
+DELETE http://localhost:8080/api/v1/softcost/1
+
+
+### PAGINACION
+GET http://localhost:8080/api/v1/softcost/page/0
+
+### LISTAR ID(NO ENCONTRADO)
+
+GET http://localhost:8080/api/v1/softcost/999
+
+### LISTAR
+
+GET http://localhost:8080/api/v1/auth
+
+
+
+### LISTAR
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "jorge@gmail.com",
+  "password": "12345678"
+}
+
+###
+
+
+# curl -v http://localhost:8080/api/v1/auth
+GET http://localhost:8080/api/v1/auth
+
+###
+
+
+
+# curl -X POST http://localhost:8080/api/v1/estimacion/calcular
+#  -H "Content-Type: application/json"
+#  -d '{
+#    "nombre_proyecto": "Sistema de Gestión v2",
+#    "duracion_meses": 6,
+#    "tamano_equipo": 5,
+#    "salario_promedio_mensual": 3000,
+#    "infraestructura_mensual": 1000,
+#    "licencias_mensuales": 501,
+#    "contingencia_porcentaje": 13
+#  }'
+POST http://localhost:8081/api/v1/estimacion/calcular
+Content-Type: application/json
+
+{
+  "nombre_proyecto": "Sistema de Gestión v2",
+  "duracion_meses": 6,
+  "tamano_equipo": 5,
+  "salario_promedio_mensual": 3000,
+  "infraestructura_mensual": 1000,
+  "licencias_mensuales": 501,
+  "contingencia_porcentaje": 13
+}
+
+###
+
+
+# curl "http://localhost:18080/api/v1/horas/calcular?tareas=10&promedio=5&tarifa=20000"
+GET http://localhost:8082/api/v1/horas/calcular?tareas=10&promedio=5&tarifa=20000
+
+###
+
+
+# curl -X POST http://localhost:8080/api/v1/reportes/generar
+#  -H "Content-Type: application/json"
+#  -d '{"nombre_proyecto":"Sistema de Gestión Empresarial","cliente":"Empresa ABC S.A.","fecha":"20/5/2026","costos_directos":45000,"costos_indirectos":12000,"costo_total":57000,"duracion_meses":4,"tamano_equipo":6,"costo_mensual":14250,"costo_por_persona":9500}'
+POST http://localhost:8083/api/v1/reportes/generar
+Content-Type: application/json
+
+{
+  "nombre_proyecto": "Sistema de Gestión Empresarial",
+  "cliente": "Empresa ABC S.A.",
+  "fecha": "20/5/2026",
+  "costos_directos": 45000,
+  "costos_indirectos": 12000,
+  "costo_total": 57000,
+  "duracion_meses": 4,
+  "tamano_equipo": 6,
+  "costo_mensual": 14250,
+  "costo_por_persona": 9500
+}
+
+###
+
+
+
+# curl "http://localhost:8080/api/v1/presupuesto/calcular?nombre_proyecto=Mi%20Proyecto&duracion_meses=6&tamano_equipo=6&salario_promedio_mensual=3000&infraestructura_mensual=1000&licencias_mensuales=500&contingencia_porcentaje=15"
+GET http://localhost:8081/api/v1/presupuesto/calcular?nombre_proyecto=Mi%20Proyecto&duracion_meses=6&tamano_equipo=6&
+  salario_promedio_mensual=3000&infraestructura_mensual=1000&licencias_mensuales=500&contingencia_porcentaje=15
+
+###

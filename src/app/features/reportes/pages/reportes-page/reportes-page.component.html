@@ -4,7 +4,6 @@
 </section>
 
 <section class="report-grid reveal" aria-label="Formulario y vista previa de reportes">
-  <!-- Información del Proyecto -->
   <article class="report-card">
     <div class="report-card__head">
       <h3>Información del Proyecto</h3>
@@ -30,10 +29,31 @@
           <input class="report-input" type="number" [(ngModel)]="indirectCosts" />
         </div>
       </div>
+
+      <div class="report-row">
+        <div>
+          <p class="report-label">Duración (meses)</p>
+          <input class="report-input" type="number" [(ngModel)]="duration" />
+        </div>
+        <div>
+          <p class="report-label">Tamaño del Equipo</p>
+          <input class="report-input" type="number" [(ngModel)]="teamSize" />
+        </div>
+      </div>
+
+      <div class="report-row">
+        <div>
+          <p class="report-label">Costo Mensual</p>
+          <input class="report-input" type="number" [(ngModel)]="monthlyCost" />
+        </div>
+        <div>
+          <p class="report-label">Costo por Persona</p>
+          <input class="report-input" type="number" [(ngModel)]="costPerPerson" />
+        </div>
+      </div>
     </div>
   </article>
 
-  <!-- Vista Previa -->
   <article class="report-card">
     <div class="report-card__head">
       <h3>Vista Previa del Reporte</h3>
@@ -56,8 +76,9 @@
           <span>{{ indirectCosts | currency:'USD':'symbol':'1.0-0' }}</span>
         </div>
         <div class="report-line total">
-          <span>COSTO TOTAL</span>
-          <span>{{ totalCost | currency:'USD':'symbol':'1.0-0' }}</span>
+          <span>COSTO TOTAL (servidor)</span>
+          <span *ngIf="serverTotal !== null">{{ serverTotal | currency:'USD':'symbol':'1.0-0' }}</span>
+          <span *ngIf="serverTotal === null" class="muted">—</span>
         </div>
       </div>
 
@@ -78,6 +99,14 @@
           <span>Costo por Persona</span>
           <strong>{{ costPerPerson | currency:'USD':'symbol':'1.0-0' }}</strong>
         </div>
+      </div>
+
+      <div class="report-actions">
+        <button class="btn" (click)="generarReporte()" [disabled]="generating">{{ generating ? 'Generando...' : 'Generar Reporte' }}</button>
+      </div>
+
+      <div *ngIf="reporteStatus" class="report-response">
+        <p><strong>Estado:</strong> {{ reporteStatus }}</p>
       </div>
     </div>
   </article>

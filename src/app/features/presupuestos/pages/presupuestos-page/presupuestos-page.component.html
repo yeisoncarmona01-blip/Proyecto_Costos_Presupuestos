@@ -11,8 +11,14 @@
     </div>
 
     <div class="budget-card__body">
+      <button class="budget-button budget-button--top" type="button" (click)="calcularPresupuesto()" [disabled]="loading">
+        {{ loading ? 'Calculando...' : 'Calcular presupuesto' }}
+      </button>
+
+      <p class="budget-error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
       <p class="budget-label">Nombre del Proyecto</p>
-      <input class="budget-input" type="text" [(ngModel)]="projectName" />
+      <input class="budget-input" type="text" [(ngModel)]="projectName" placeholder="Ej: Sistema de Gestión" />
 
       <div class="budget-metrics">
         <div class="budget-metric">
@@ -27,7 +33,7 @@
 
       <p class="budget-label">Salario Promedio Mensual ($)</p>
       <input class="budget-input" type="number" [(ngModel)]="avgSalary" />
-      <p class="budget-note">Costo mensual por persona: {{ monthlyCostPerPerson | currency:'USD':'symbol':'1.0-0' }}</p>
+      <p class="budget-note">Costo mensual del equipo: {{ monthlyCostPerPerson | currency:'USD':'symbol':'1.0-0' }}</p>
 
       <div class="budget-metrics">
         <div class="budget-metric">
@@ -39,6 +45,14 @@
           <input type="number" [(ngModel)]="licensesMonthly" />
         </div>
       </div>
+
+        <div class="budget-metrics">
+          <div class="budget-metric">
+            <p class="budget-label">Contingencia (%)</p>
+            <input type="number" [(ngModel)]="contingencyRate" min="0" max="100" />
+          </div>
+        </div>
+
     </div>
   </article>
 
@@ -50,6 +64,11 @@
       </div>
 
       <div class="budget-card__body budget-breakdown">
+        <div class="budget-line">
+          <span>Proyecto</span>
+          <strong>{{ estimation.nombreProyecto || 'Sin calcular' }}</strong>
+          <span></span>
+        </div>
         <div class="budget-line">
           <span>Personal</span>
           <strong>{{ personalCost | currency:'USD':'symbol':'1.0-0' }}</strong>

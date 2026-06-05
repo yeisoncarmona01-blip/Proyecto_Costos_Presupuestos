@@ -77,6 +77,41 @@
   font-size: 0.97rem;
 }
 
+.budget-button {
+  min-height: 2.85rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.6rem 1.1rem;
+  font: inherit;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(90deg, #1268f2, #14986c);
+  box-shadow: 0 12px 24px rgba(18, 104, 242, 0.22);
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 16px 30px rgba(18, 104, 242, 0.28);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: wait;
+  }
+}
+
+.budget-button--top {
+  width: 100%;
+  margin-bottom: 0.25rem;
+}
+
+.budget-error {
+  margin: 0;
+  color: #b42318;
+  font-weight: 600;
+}
+
 // ── Breakdown ──────────────────────────────────────────────────────────────
 .budget-breakdown {
   display: grid;
